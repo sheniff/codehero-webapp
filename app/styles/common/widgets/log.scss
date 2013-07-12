@@ -1,0 +1,30 @@
+.log {
+
+  font-family: monospace;
+
+  .empty {
+    color: #555;
+    font-style: italic;
+  }
+
+  .line {
+
+    &.line-error {
+      color: red;
+    }
+
+    &.line-warning {
+      color: orange;
+    }
+
+    &.line-success {
+      color: green;
+    }
+
+    &.line-info {
+      color: blue;
+    }
+
+  }
+
+}

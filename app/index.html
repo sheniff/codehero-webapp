@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html class='no-js'>
+  <head>
+    <meta charset='utf-8'>
+    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+    <title></title>
+    <meta content='' name='description'>
+    <meta content='width=device-width' name='viewport'>
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link href='bower_components/codemirror/lib/codemirror.css' rel='stylesheet'>
+    <link href='bower_components/codemirror/theme/ambiance.css' rel='stylesheet'>
+    <link href='bower_components/angular-ui/build/angular-ui.css' rel='stylesheet'>
+    <!-- build:css({.tmp,app}) styles/main.css -->
+    <link href='styles/base.css' rel='stylesheet'>
+    <link href='styles/challenge/common.css' rel='stylesheet'>
+    <link href='styles/common/widgets/log.css' rel='stylesheet'>
+    <!-- endbuild -->
+  </head>
+  <body ng-app='codehero'>
+    <div class='container' ng-view=''></div>
+    <!-- build:js scripts/plugins.js -->
+    <script src='bower_components/jquery/jquery.js'></script>
+    <script src='bower_components/angular/angular.js'></script>
+    <script src='bower_components/angular-ui/build/angular-ui.js'></script>
+    <script src='bower_components/underscore/underscore.js'></script>
+    <script src='bower_components/codemirror/lib/codemirror.js'></script>
+    <script src='bower_components/codemirror/mode/python/python.js'></script>
+    <script src='bower_components/socket.io-client/dist/socket.io.js'></script>
+    <!-- endbuild -->
+    <!-- build:js scripts/modules.js -->
+    <script src='bower_components/angular/angular-resource.js'></script>
+    <script src='bower_components/angular/angular-cookies.js'></script>
+    <script src='bower_components/angular/angular-sanitize.js'></script>
+    <!-- endbuild -->
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src='scripts/app.js'></script>
+    <script src='scripts/controllers/challenge.js'></script>
+    <script src='scripts/services/challenge.js'></script>
+    <script src='scripts/services/socketio.js'></script>
+    <script src='scripts/widgets/log.js'></script>
+    <script src='scripts/extra/codemirror.js'></script>
+    <!-- endbuild -->
+  </body>
+</html>

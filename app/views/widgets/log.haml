@@ -1,0 +1,5 @@
+%ul.log
+  .empty{ "ng-hide" => "lines.length" }
+    Empty log...
+  %li.line{ "ng-repeat" => "line in lines", class: "line-{{line.type}}" }
+    [{{line.time.getHours()}}:{{line.time.getMinutes()}}:{{line.time.getSeconds()}}] {{ line.message }}

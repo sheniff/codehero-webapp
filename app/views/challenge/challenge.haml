@@ -1,0 +1,24 @@
+%h1 Prepare for the challenge
+
+#question_block.well
+  #request
+    %a.btn.btn-large{ "ng-click" => "problem.$getProblem()", "ng-hide" => "problem.description" }
+      Start
+  #question{ "ng-show" => "problem.description" }
+    {{ problem.description }}
+
+#own_wb.span7
+  %h2
+    You
+    %a.btn.btn-primary{ "ng-click" => "submitSolution()", "ng-show" => "problem.description" }
+      Submit Code
+
+  %textarea#whiteboard{ "ui-codemirror" => "boardOptions", "ng-model" => "solution.code" }
+  .well
+
+    %log{ "tag" => "challenge" }
+
+#rivals_wb.span4
+  .rival_board{ "ng-repeat" => "rival in rivals" }
+    Rival: {{ rival.name }}
+    %textarea{ "ui-codemirror" => "rivalBoardOptions", "ng-model" => "rival.code" }

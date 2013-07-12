@@ -1,0 +1,8 @@
+<ul class='log'>
+  <div class='empty' ng-hide='lines.length'>
+    Empty log...
+  </div>
+  <li class='line line-{{line.type}}' ng-repeat='line in lines'>
+    [{{line.time.getHours()}}:{{line.time.getMinutes()}}:{{line.time.getSeconds()}}] {{ line.message }}
+  </li>
+</ul>

@@ -1,0 +1,28 @@
+.CodeMirror {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.activeline {
+  background: rgb(65, 75, 87) !important;
+}
+
+#own_wb {
+
+  div.CodeMirror {
+    height: 260px;
+  }
+}
+
+
+#rivals_wb {
+  border-left: 1px solid black;
+  padding-left: 20px;
+
+  div.CodeMirror {
+    height: 160px;
+    // Crappy temporary idea :P
+    -webkit-filter: blur(3px);
+  }
+
+}
