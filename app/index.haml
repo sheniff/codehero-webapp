@@ -41,7 +41,10 @@
     / endbuild
 
     / build:js({.tmp,app}) scripts/scripts.js
+    %script{src: "scripts/config/config.js"}
+    %script{src: "scripts/config/router.js"}
     %script{src: "scripts/app.js"}
+    %script{src: "scripts/config/routes.js"}
     %script{src: "scripts/controllers/challenge.js"}
     %script{src: "scripts/services/challenge.js"}
     %script{src: "scripts/services/socketio.js"}

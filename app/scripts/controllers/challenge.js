@@ -4,7 +4,7 @@
 function ChallengeCtrl($scope, $rootScope, $window, $timeout, Challenge, SocketIO){
 
   var submitSolutionSuccess, submitSolutionError,
-      log, setUpListeners, update,
+      log, setUpListeners,
       /**
        * Socket IO object
        */
@@ -49,8 +49,10 @@ function ChallengeCtrl($scope, $rootScope, $window, $timeout, Challenge, SocketI
       tabSize: 2,
       lineNumbers: true,
       theme: 'ambiance',
-      onChange: function(instance, changeObj) {
-        if(!socket) return;
+      onChange: function(/*instance, changeObj*/) {
+        if(!socket){
+          return;
+        }
 
         // socket.emit('board_change', changeObj);
 
@@ -97,10 +99,12 @@ function ChallengeCtrl($scope, $rootScope, $window, $timeout, Challenge, SocketI
   };
 
   submitSolutionError = function(xhr) {
-    if(parseInt(xhr.status, 10) >= 500)
+    if(parseInt(xhr.status, 10) >= 500){
       log('Submission failed... Server error... Our baaaad!!! (Try again!)', 'error');
-    else
+    }
+    else{
       log('[ERROR #' + xhr.status + '] ' + xhr.data.error, 'warning');
+    }
   };
 
   log = function(message, type) {
@@ -111,7 +115,7 @@ function ChallengeCtrl($scope, $rootScope, $window, $timeout, Challenge, SocketI
   };
 
   setUpListeners = function(s, user) {
-    s.on('connect', function(data){
+    s.on('connect', function(){
       console.log('SocketIO connected!', user);
       s.emit('join', user);
     });
@@ -121,7 +125,7 @@ function ChallengeCtrl($scope, $rootScope, $window, $timeout, Challenge, SocketI
     });
 
     s.on('new_connection', function(user){
-      console.log("New guy has connected:", user);
+      console.log('New guy has connected:', user);
       // Sending that guy this user's info
       s.emit('reveal_to', user.id);
 
@@ -130,14 +134,14 @@ function ChallengeCtrl($scope, $rootScope, $window, $timeout, Challenge, SocketI
     });
 
     s.on('user_disconnected', function(user){
-      console.log(user.name + " has gone...");
+      console.log(user.name + ' has gone...');
 
       delete $scope.rivals[user.id];
       $scope.$apply();
     });
 
     s.on('board_update', function(data){
-      // console.log("Changes", data);
+      // console.log('Changes', data);
       $scope.rivals[data.sender.id].code = data.changeObj;
       $scope.$apply();
       // update(data);
@@ -149,13 +153,13 @@ function ChallengeCtrl($scope, $rootScope, $window, $timeout, Challenge, SocketI
     });
 
     s.on('revealed_user', function(user){
-      console.log("Revealed user:", user);
+      console.log('Revealed user:', user);
 
       $scope.rivals[user.id] = user;
       $scope.$apply();
     });
 
-    $($window).on("beforeunload", function(e){
+    $($window).on('beforeunload', function(){
       socket.emit('disconnect');
     });
   };

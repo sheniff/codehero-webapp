@@ -1,3 +1,5 @@
+'use strict';
+
 codehero.directive('log', ['$rootScope',
 function factory($rootScope){
   return {
@@ -13,7 +15,7 @@ function factory($rootScope){
       });
 
       // Private
-      var prepare_line = function(args) {
+      var prepareLine = function(args) {
         return {
           message: args.message || '',
           type: args.type || '',
@@ -22,14 +24,16 @@ function factory($rootScope){
       };
 
       // Listen to new messages
-      iAttrs.tag && $rootScope.$on('log:'+iAttrs.tag, function(event, args) {
-        $scope.lines.push(prepare_line(args));
-      });
+      if(iAttrs.tag){
+        $rootScope.$on('log:'+iAttrs.tag, function(event, args) {
+          $scope.lines.push(prepareLine(args));
+        });
+      }
 
       $rootScope.$on('log:all', function(event, args) {
-        $scope.lines.push(prepare_line(args));
+        $scope.lines.push(prepareLine(args));
       });
 
     }
-  }
+  };
 }]);

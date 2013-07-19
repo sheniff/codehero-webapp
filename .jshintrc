@@ -19,6 +19,16 @@
   "trailing": true,
   "smarttabs": true,
   "globals": {
-    "angular": false
+
+    "angular": false,
+    "$": false,
+    "_": false,
+    "io": false,
+    "CodeMirror": false,
+
+    "codehero": true,
+    "CONFIG": true,
+    "ROUTER": true
+
   }
 }

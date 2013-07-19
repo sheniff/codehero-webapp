@@ -1,6 +1,9 @@
+'use strict';
+
 // App entry point
 var codehero = angular.module('codehero', [
   'ui',
+  'codehero.Routes',
   'ChallengeService',
   'SocketIOService'
 ]);
@@ -20,14 +23,6 @@ codehero.value('ui.config', {
     selectHelper: true
   }
 });
-
-codehero.config(['$routeProvider', function($router){
-  $router
-    .when('/', { templateUrl: '/views/challenge/challenge.html', controller: 'ChallengeCtrl' })
-
-    .otherwise({redirectTo: '/'});
-  // $locationProvider.html5Mode(true);
-}]);
 
 codehero.config(['$httpProvider', function($httpProvider){
   $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');

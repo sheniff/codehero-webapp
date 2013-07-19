@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('SocketIOService', ['ngResource'])
 .factory('SocketIOService', [function(){
 
