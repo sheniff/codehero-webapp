@@ -1,0 +1,11 @@
+%h1 Challenges view
+
+%h2 Challenges
+%ul.challenges
+  %li.challenge{ 'ng-repeat' => 'challenge in challenges' }
+    {{ challenge.name }}
+
+%h2 New challenge
+%form{ name: 'new_challenge', 'ng-submit' => 'create()' }
+  %input{ type: 'text', name: 'name', 'ng-model' => 'newChallenge.name' }
+  %input{ type: 'submit' }

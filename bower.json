@@ -19,5 +19,7 @@
     "codemirror":           "latest"
   },
 
-  "devDependencies": {}
+  "devDependencies": {
+    // "chai":                 "~1.7.2"
+  }
 }
