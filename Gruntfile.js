@@ -2,6 +2,7 @@
 'use strict';
 var LIVERELOAD_PORT = 35729;
 var lrSnippet = require('connect-livereload')({ port: LIVERELOAD_PORT });
+var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
 var mountFolder = function (connect, dir) {
   return connect.static(require('path').resolve(dir));
 };
@@ -27,7 +28,9 @@ module.exports = function (grunt) {
   } catch (e) {}
 
   grunt.initConfig({
+
     yeoman: yeomanConfig,
+
     watch: {
       coffee: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.coffee'],
@@ -58,17 +61,28 @@ module.exports = function (grunt) {
         ]
       }
     },
+
     connect: {
       options: {
         port: 9000,
         // Change this to '0.0.0.0' to access the server from outside.
         hostname: 'localhost'
       },
+      proxies: [
+        {
+          context: '/api',
+          host: 'localhost',
+          port: 3000,
+          https: false,
+          changeOrigin: false
+        }
+      ],
       livereload: {
         options: {
           middleware: function (connect) {
             return [
               lrSnippet,
+              proxySnippet,
               mountFolder(connect, '.tmp'),
               mountFolder(connect, yeomanConfig.app)
             ];
@@ -95,11 +109,13 @@ module.exports = function (grunt) {
         }
       }
     },
+
     open: {
       server: {
         url: 'http://localhost:<%= connect.options.port %>'
       }
     },
+
     clean: {
       dist: {
         files: [{
@@ -122,6 +138,7 @@ module.exports = function (grunt) {
         }]
       }
     },
+
     jshint: {
       options: {
         jshintrc: '.jshintrc'
@@ -131,6 +148,7 @@ module.exports = function (grunt) {
         '<%= yeoman.app %>/scripts/{,*/}*.js'
       ]
     },
+
     coffee: {
       dist: {
         files: [{
@@ -151,6 +169,7 @@ module.exports = function (grunt) {
         }]
       }
     },
+
     compass: {
       options: {
         sassDir: '<%= yeoman.app %>/styles',
@@ -172,11 +191,13 @@ module.exports = function (grunt) {
         }
       }
     },
+
     // not used since Uglify task does concat,
     // but still available if needed
     /*concat: {
       dist: {}
     },*/
+
     rev: {
       dist: {
         files: {
@@ -189,12 +210,14 @@ module.exports = function (grunt) {
         }
       }
     },
+
     useminPrepare: {
       html: '<%= yeoman.app %>/index.html',
       options: {
         dest: '<%= yeoman.dist %>'
       }
     },
+
     usemin: {
       html: ['<%= yeoman.dist %>/{,*/}*.html'],
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
@@ -202,6 +225,7 @@ module.exports = function (grunt) {
         dirs: ['<%= yeoman.dist %>']
       }
     },
+
     imagemin: {
       dist: {
         files: [{
@@ -212,6 +236,7 @@ module.exports = function (grunt) {
         }]
       }
     },
+
     cssmin: {
       // By default, your `index.html` <!-- Usemin Block --> will take care of
       // minification. This option is pre-configured if you do not wish to use
@@ -225,6 +250,7 @@ module.exports = function (grunt) {
       //   }
       // }
     },
+
     htmlmin: {
       dist: {
         options: {
@@ -246,6 +272,7 @@ module.exports = function (grunt) {
         }]
       }
     },
+
     // Put files not handled in other tasks here
     copy: {
       dist: {
@@ -271,6 +298,7 @@ module.exports = function (grunt) {
         }]
       }
     },
+
     concurrent: {
       server: [
         'coffee:dist',
@@ -290,17 +318,20 @@ module.exports = function (grunt) {
         'htmlmin'
       ]
     },
+
     karma: {
       unit: {
         configFile: 'karma-unit.conf.js',
         singleRun: true
       }
     },
+
     cdnify: {
       dist: {
         html: ['<%= yeoman.dist %>/*.html']
       }
     },
+
     ngmin: {
       dist: {
         files: [{
@@ -311,6 +342,7 @@ module.exports = function (grunt) {
         }]
       }
     },
+
     uglify: {
       dist: {
         files: {
@@ -320,6 +352,7 @@ module.exports = function (grunt) {
         }
       }
     },
+
     haml: {
       dist: {
         files: [{
@@ -341,6 +374,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'concurrent:server',
+      'configureProxies',
       'connect:livereload',
       'open',
       'watch'

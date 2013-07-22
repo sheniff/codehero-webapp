@@ -2,7 +2,7 @@
 
 angular.module('ChallengeService', ['ngResource'])
 .factory('ChallengeService', ['$resource', function(resource){
-  return resource('http://localhost:3000/api/v1/challenges/:id/:nested', {
+  return resource('/api/v1/challenges/:id/:nested', {
     id: '@id'
   },{
 
