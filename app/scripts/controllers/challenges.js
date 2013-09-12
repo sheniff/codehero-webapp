@@ -3,6 +3,7 @@
 function ChallengesCtrl($scope, Challenge) {
 
   var successCallback = function(data) {
+    $scope.challenges.push(data);
     $scope.newChallenge = new Challenge();
   },
   errorCallback = function(xhr) {

@@ -22,6 +22,8 @@ angular.module('codehero.Routes', [])
 
     ROUTER.when('root_path',            '',                 routeHash('challenges/index',     'ChallengesCtrl'));
     ROUTER.when('challenge_path',       '/stacks/create',   routeHash('challenges/challenge', 'ChallengeCtrl'));
+    // Temporary not used. We'll use backend login as stated in http://www.thinkster.io/pick/GUIDJbpIie/angularjs-tutorial-learn-to-build-modern-web-apps#item-521e920161936f2b560004b0
+    // ROUTER.when('login_path',           '/login',           routeHash('user/login',           'UserCtrl'));
 
     ROUTER.otherwise({redirectTo: function() {
       window.location.href = '/';

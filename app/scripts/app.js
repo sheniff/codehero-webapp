@@ -5,7 +5,12 @@ var codehero = angular.module('codehero', [
   'ui',
   'codehero.Routes',
   'ChallengeService',
-  'SocketIOService'
+  'SocketIOService',
+  'ngch.controllers'
+]);
+
+window.angular.module('ngch.controllers', [
+  'ngch.controllers.user'
 ]);
 
 codehero.value('ui.config', {
