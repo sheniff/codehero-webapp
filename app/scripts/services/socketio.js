@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('SocketIOService', ['ngResource'])
-.factory('SocketIOService', [function(){
+window.angular.module('ngch.services.SocketIO', ['ngResource'])
+  .factory('SocketIOService', [function(){
 
-  return function(url) {
-    return io.connect(url);
-  };
+    return function(url) {
+      return io.connect(url);
+    };
 
-}]);
+  }]);

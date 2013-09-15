@@ -1,0 +1,16 @@
+.navbar-inner{"ng-controller" => "HeaderCtrl"}
+  %a.brand{:href => "/"} CodeHero
+  %ul.nav.pull-right{"ng-hide" => "global.isSignedIn()"}
+    %li
+      %a{:href => "//localhost:3000/auth/register/cmon_let_me_in"} Signup
+    %li.divider-vertical
+    %li
+      %a{:href => "//localhost:3000/auth/login"} Signin
+  %ul.nav.pull-right{"ng-show" => "global.isSignedIn()"}
+    %li.dropdown
+      %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+        {{global.currentUser().nick}} ({{global.currentUser().email}})
+        %b.caret
+      %ul.dropdown-menu
+        %li
+          %a{:href => "//localhost:3000/auth/logout"} Signout

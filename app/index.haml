@@ -23,6 +23,7 @@
     / endbuild
 
   %body{"ng-app" => "codehero"}
+    %header.navbar.navbar-fixed-top{ 'ng-include' => "'views/header.html'" }
     .container{"ng-view" => ""}
 
     / build:js scripts/plugins.js
@@ -30,6 +31,7 @@
     %script{src: "bower_components/angular/angular.js"}
     %script{src: "bower_components/angular-ui/build/angular-ui.js"}
     %script{src: "bower_components/underscore/underscore.js"}
+    %script{src: "bower_components/bootstrap-sass/js/bootstrap-dropdown.js"}
     %script{src: "bower_components/codemirror/lib/codemirror.js"}
     %script{src: "bower_components/codemirror/mode/python/python.js"}
     %script{src: "bower_components/socket.io-client/dist/socket.io.js"}
@@ -45,12 +47,14 @@
     %script{src: "scripts/config/config.js"}
     %script{src: "scripts/config/router.js"}
     %script{src: "scripts/config/routes.js"}
-    %script{src: "scripts/controllers/user.js"}
+    %script{src: "scripts/filters/filters.js"}
     %script{src: "scripts/app.js"}
+    %script{src: "scripts/controllers/header.js"}
     %script{src: "scripts/controllers/challenges.js"}
     %script{src: "scripts/controllers/challenge.js"}
-    %script{src: "scripts/services/challenges.js"}
     %script{src: "scripts/services/socketio.js"}
+    %script{src: "scripts/services/global.js"}
+    %script{src: "scripts/services/challenge.js"}
     %script{src: "scripts/widgets/log.js"}
 
     %script{src: "scripts/extra/codemirror.js"}

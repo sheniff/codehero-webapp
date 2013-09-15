@@ -1,0 +1,24 @@
+%div{ 'ng-controller' => "ChallengesCtrl", 'ng-init' => 'find()' }
+  %h1 Dashboard
+
+  %section.challenges
+    %h2 Challenges
+
+    .created
+      %h3 Created
+      %ul.challenges
+        %li.challenge{ 'ng-repeat' => 'challenge in challenges | filter:filter.created' }
+          %a{ 'ng-href' => '#/challenge/{{challenge.id}}' }
+            {{ challenge.name }}
+
+    .participating
+      %h3 Joined
+      %ul.challenges
+        %li.challenge{ 'ng-repeat' => 'challenge in challenges | filter:filter.joined' }
+          %a{ 'ng-href' => '#/challenge/{{challenge.id}}' }
+            {{ challenge.name }}
+
+  %h2 New challenge
+  %form{ name: 'new_challenge', 'ng-submit' => 'create()' }
+    %input{ type: 'text', name: 'name', 'ng-model' => 'challenge.name' }
+    %input{ type: 'submit' }

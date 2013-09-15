@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('codehero.Routes', [])
+window.angular.module('ngch.routes', [])
 
   .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 
@@ -20,8 +20,11 @@ angular.module('codehero.Routes', [])
       };
     };
 
-    ROUTER.when('root_path',            '',                 routeHash('challenges/index',     'ChallengesCtrl'));
-    ROUTER.when('challenge_path',       '/challenge/:id',   routeHash('challenges/challenge', 'ChallengeCtrl'));
+    // Dashboard
+    ROUTER.when('root_path',      '',                 routeHash('dashboard'));
+
+    // Challenge
+    ROUTER.when('challenge_path', '/challenge/:id',   routeHash('challenges/challenge', 'ChallengeCtrl'));
 
     ROUTER.otherwise({redirectTo: function() {
       window.location.href = '/';

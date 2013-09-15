@@ -1,16 +1,23 @@
 'use strict';
 
 // App entry point
-var codehero = angular.module('codehero', [
+var codehero = window.angular.module('codehero', [
   'ui',
-  'codehero.Routes',
-  'ChallengeService',
-  'SocketIOService',
+  'ngch.routes',
+  'ngch.filters',
+  'ngch.services',
   'ngch.controllers'
 ]);
 
 window.angular.module('ngch.controllers', [
-  'ngch.controllers.user'
+  'ngch.controllers.header',
+  'ngch.controllers.challenges'
+]);
+
+window.angular.module('ngch.services', [
+  'ngch.services.SocketIO',
+  'ngch.services.Global',
+  'ngch.services.Challenge'
 ]);
 
 codehero.value('ui.config', {
