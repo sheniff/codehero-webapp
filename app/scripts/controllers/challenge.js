@@ -1,7 +1,7 @@
 'use strict';
 
 // ToDo: Modify this file to use angular-socketio :P
-function ChallengeCtrl($scope, $rootScope, $window, $timeout, Challenge, SocketIO){
+function ChallengeCtrl($scope, $rootScope, $routeParams, $window, $timeout, Challenge, SocketIO){
 
   var submitSolutionSuccess, submitSolutionError,
       log, setUpListeners,
@@ -17,9 +17,9 @@ function ChallengeCtrl($scope, $rootScope, $window, $timeout, Challenge, SocketI
      * Challenge
      */
     challenge: Challenge.get(
-      {id: $scope.challengeID},
+      {id: $routeParams.id},
       function() {
-        log('Welcome to CodeHero - Challenge #' + $scope.challengeID + '!', 'info');
+        log('Welcome to CodeHero - Challenge #' + $routeParams.id + '!', 'info');
         log('Press Start when you\'re ready to begin!');
 
         socket = new SocketIO('http://localhost:7777');
@@ -30,12 +30,12 @@ function ChallengeCtrl($scope, $rootScope, $window, $timeout, Challenge, SocketI
     /**
      * Challenge's problem
      */
-    problem: new Challenge({id: $scope.challengeID}),
+    problem: new Challenge({id: $routeParams.id}),
 
     /*
      * Player's Code
      */
-    solution: new Challenge({id: $scope.challengeID}),
+    solution: new Challenge({id: $routeParams.id}),
 
     /**
      * Other players
@@ -196,4 +196,4 @@ function ChallengeCtrl($scope, $rootScope, $window, $timeout, Challenge, SocketI
 
 }
 
-ChallengeCtrl.$inject = ['$scope', '$rootScope', '$window', '$timeout', 'ChallengeService', 'SocketIOService'];
+ChallengeCtrl.$inject = ['$scope', '$rootScope', '$routeParams', '$window', '$timeout', 'ChallengeService', 'SocketIOService'];
