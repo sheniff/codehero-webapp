@@ -12,7 +12,6 @@ function ChallengesCtrl($scope, Challenge) {
 
   angular.extend($scope, {
 
-    // ToDo should retrieve only challenges for the logged in user
     challenges: Challenge.query(),
     newChallenge: new Challenge(),
 

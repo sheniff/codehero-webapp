@@ -3,7 +3,8 @@
 %h2 Challenges
 %ul.challenges
   %li.challenge{ 'ng-repeat' => 'challenge in challenges' }
-    {{ challenge.name }}
+    %a{ 'ng-href' => '#/challenge/{{challenge.id}}' }
+      {{ challenge.name }}
 
 %h2 New challenge
 %form{ name: 'new_challenge', 'ng-submit' => 'create()' }
